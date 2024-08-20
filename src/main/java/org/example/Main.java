@@ -19,6 +19,11 @@ public class Main {
                 System.out.println("종료 됩니다");
                 break;
 
+            }else if(command.equals("등록")){
+                System.out.print("제목:");
+                String subject =sc.nextLine().trim();
+                System.out.print("내용:");
+                String content =sc.nextLine().trim();
             }
         }
          sc.close();
