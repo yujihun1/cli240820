@@ -25,7 +25,6 @@ public class App  {
             if (command.equals("종료")) {
                 break;
 
-
                 //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
                 // to see how IntelliJ IDEA suggests fixing it.
 
@@ -49,11 +48,38 @@ public class App  {
             }else if (command.equals("목록")){
                 System.out.println("번호/ 제목 / 내용");
                 System.out.println("------------------");
-                for(int i= articleList.size()-1; i>=0;i--){
+                for(int i= articleList.size()-1; i>=0;i--) {
                     Article article = articleList.get(i);
-                    System.out.printf("%d,%s,%s\n",article.getId(),article.getSubject(),article.getContent());
+                    System.out.printf("%d,%s,%s\n", article.getId(), article.getSubject(), article.getContent());
                 }
 
+
+            }else if (command.equals("목록")) {
+                System.out.println("번호 / 제목 / 내용");
+                System.out.println("------------------");
+                for (int i = articleList.size() - 1; i >= 0; i--) {
+                    Article article = articleList.get(i);
+                    System.out.printf("%d / %s / %s\n", article.getId(), article.getSubject(), article.getContent());
+                }
+            } else if (command.startsWith("삭제")) {
+
+               String[] commandList= command.split("\\?",2);
+               String actionCode=commandList[0];
+               String[] paramsStr=commandList[0].split("=",2);
+
+               String key=paramsStr[0];
+               String value=paramsStr[1];
+               int idx=Integer.parseInt(value);
+
+
+               for(int i=0;i<articleList.size();i++) {
+
+                   if(articleList.get(i).getId()==idx) {
+                       articleList.remove(i);
+                   }
+               }
+
+                System.out.printf("%d번 게시물이 삭제되었습니다,\n",idx);
             }
 
         }
